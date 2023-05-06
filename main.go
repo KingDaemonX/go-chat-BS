@@ -37,10 +37,10 @@ func (s *server) chatRoomRead(ws *websocket.Conn) {
 			}
 			fmt.Println("[❗]Error : ", err.Error())
 			continue
+		} else if string(s.msg[:n]) == "Hello Bot :)" {
+			ws.Write([]byte("--> Hello from KingDaemonX Bot...How may I help you 🤖"))
+			fmt.Printf("--> Client To Bot: %s\n", s.msg[:n])
 		} else {
-			// ws.Write([]byte("--> Hello from KingDaemonX Bot...How may I help you 🤖"))
-			// fmt.Printf("--> Client Message: %s", s.msg[:n])
-
 			s.broadcast(s.msg, n)
 		}
 	}
